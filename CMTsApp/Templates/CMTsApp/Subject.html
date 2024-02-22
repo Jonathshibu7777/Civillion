@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token%}
+        <table border="1">
+            <tr>
+                <td>Subject Name</td>
+                <td><input type="text" name="SubjectName" ></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Submit">
+                    <input type="reset"  name="btnreset"  value="Reset">
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>SINo</td>
+                <td>Subject_Name</td>
+            </tr>
+            {% for i in subjectdata %} 
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Subject_Name}}</td>
+            <td><a href="{% url 'webclass:delete_subject' i.id %}">Delete</a></td>
+            <td><a href="{% url 'webclass:edit_subject' i.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </form>
+</body>
+</html>

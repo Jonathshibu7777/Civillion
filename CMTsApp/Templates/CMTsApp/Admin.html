@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token%}
+        <table border="1">
+            <tr>
+                <td>Admin Name</td>
+                <td><input type="text" name="AdminName" ></td>
+            </tr>
+            <tr>
+                <td>Admin Email</td>
+                <td><input type="text" name="AdminEmail" ></td>
+            </tr>
+            <tr>
+                <td>Admin Password</td>
+                <td>
+                    <input type="text" name="AdminPassword"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Submit">
+                    <input type="reset"  name="btnreset"  value="Reset">
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>SINo</td>
+                <td>Admin_Name</td>
+                <td>Admin_Email</td>
+                <td>Admin_Password</td>
+            </tr>
+            {% for i in admindata %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Admin_Name}}</td>
+            <td>{{i.Admin_Email}}</td>
+            <td>{{i.Admin_Password}}</td>
+            <td><a href="{% url 'webclass:delete_admin' i.id %}">Delete</a><br><a href="{% url 'webclass:edit_admin' i.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </form>
+</body>
+</html>
