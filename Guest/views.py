@@ -17,3 +17,34 @@ def ajaxplace(request):
     place = tbl_Place.objects.filter(District_Name=dis)
     return render(request,"guest/AjaxPlace.html",{"placedata":place})
 
+def Test(request):
+    District = tbl_District.objects.all()
+    Category = tbl_Category.objects.all()
+    Test=tbl_Test.objects.all()
+    if request.method=="POST":
+        place = tbl_Place.objects.get(id=request.POST.get('sel_place'))
+        subcat=tbl_SubCategory.objects.get(id=request.POST.get('sel_subcategory'))
+        tbl_Test.objects.create(test_name=request.POST.get("testname"),test_period=request.POST.get("testduration"),test_description=request.POST.get("testdescription"),test_amount=request.POST.get("testamount"),subCategory=subcat,place=place)
+        return redirect("guest:Test")
+    else:
+        return render(request,"guest/Test.html",{"categorydata":Category,"districtdata":District,"Testdata":Test})
+
+def Ajaxtest(request):
+    cat= tbl_Category.objects.get(id=request.GET.get("did"))
+    subcat = tbl_SubCategory.objects.filter(Category_Id=cat)
+    return render(request,"guest/Ajaxtest.html",{"subcategorydata":subcat})
+
+
+def Login(request):
+    if request.method=="POST":
+        Email=request.POST.get("user_name")
+        Password=request.POST.get("password")
+        admincount=tbl_Admin.objects.filter(Admin_Email=Email,Admin_Password=Password).count()
+        if admincount>0:
+            admin=tbl_Admin.objects.get(Admin_Email=Email,Admin_Password=Password)
+            request.session["adminid"]=admin.id
+            return redirect("webclass:Home")
+        else:
+            return render(request,'Guest/Login.html')
+    else:
+        return render(request,'Guest/Login.html')

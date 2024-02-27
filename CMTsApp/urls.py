@@ -3,6 +3,8 @@ from CMTsApp import views
 
 app_name='webclass'
 urlpatterns = [
+    path('Home/',views.home,name="Home"),
+
     path('Admin/', views.admin,name="Admin"),
     path('delete_admin/<int:id>',views.delete_admin,name="delete_admin"),
     path('edit_admin/<int:id>',views.edit_admin,name="edit_admin"),

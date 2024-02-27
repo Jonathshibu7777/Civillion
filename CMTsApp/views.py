@@ -55,9 +55,9 @@ def SubCat(request):
     SubCatData=tbl_SubCategory.objects.all()
     if request.method == "POST":
         SubCat_Name = request.POST.get("SubCategoryName")
-        Category= tbl_Category.objects.get(id=request.POST.get('sel_Category'))
+        Category= tbl_Category.objects.get(id=request.POST.get('sel_category'))
         tbl_SubCategory.objects.create(SubCat_Name=SubCat_Name,Category_Id = Category)
-        return redirect(request,"CMTsApp/SubCat.html",{"subcatdata":SubCatData})
+        return redirect("webclass:SubCat")
     else:
         return render(request,"CMTsApp/SubCat.html",{"categorydata":CatData,"subcatdata":SubCatData})
 
@@ -214,3 +214,6 @@ def syllabus(request):
 def delete_syllabus(request,id):
     tbl_Syllabus.objects.get(id=id).delete()
     return redirect("webclass:syllabus")
+
+def home(request):
+    return render(request,"CMTsApp/Homepage.html")

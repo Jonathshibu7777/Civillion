@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enteprise</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>Enterprise Name</td>
+                <td><input type="text" name="EnterpriseName" placeholder="Enter Name" required ></td>
+            </tr>
+            <tr>
+                <td>Enterprise_Email</td>
+                <td><input type="text" name="EnterpriseEmail" placeholder="Enter Email" required></td>
+            </tr>
+            <tr>
+                <td>Enterprise PhoneNumber</td>
+                 <td><input type="text" name="EnterpriseNumber" placeholder="Enter Number" required></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select name="sel_category" id="sel_category">
+                        <option value="">...Select...</option>
+                        {% for i in categorydata %}
+                        <option value="{{i.id}}">{{i.Category_Name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Sub_category</td>
+                <td>
+                    <select name="sel_subcategory" id="sel_subcategory">
+                        <option value="">...Select...</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Test Name</td>
+                <td><input type="text" name="testname" placeholder="Enter Name" required ></td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td>
+                    <select name="sel_district" id="sel_district">
+                        <option value="">...Select...</option>
+                        {% for i in districtdata %}
+                        <option value="{{i.id}}">{{i.District_Name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td>
+                    <select name="sel_place" id="sel_place">
+                        <option value="">...Select...</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Test Duration</td>
+                <td><input type="text" name="testduration" placeholder="Enter Duration" required ></td>
+            </tr>
+            <tr>
+                <td>Test Description</td>
+                <td><input type="text" name="testdescription" placeholder="Enter Description" required ></td>
+            </tr>
+            <tr>
+                <td>Test Amount</td>
+                <td><input type="text" name="testamount" placeholder="Enter Amount" required ></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Save">
+                    <input type="reset" name="btncancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>SINo</td>
+                <td>Test_Name</td>
+                <td>Test_Location</td>
+                <td>Sub_Category</td>
+                <td>Test Period</td>
+                <td>Test Description</td>
+                <td>Test Amount</td>
+            </tr>
+            {% for i in Testdata %} 
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.test_name}}</td>
+            <td>{{i.place.Place_Name}}</td>
+            <td>{{i.subCategory.SubCat_Name}}</td>
+            <td>{{i.test_period}}</td>
+            <td>{{i.test_description}}</td> 
+            <td>{{i.test_amount}}</td>
+
+            
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </form>
+
+    
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_category").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'guest:Ajaxtest' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_subcategory").html(data);
+            },
+        });
+    });
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>

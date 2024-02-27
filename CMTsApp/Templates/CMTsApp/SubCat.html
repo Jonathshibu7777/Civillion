@@ -36,12 +36,13 @@
             <tr>
                 <td>SINo</td>
                 <td>Category_Name</td>
+                <td>SubCategory_Name</td>
             </tr>
             {% for i in subcatdata %} 
             <tr>
             <td>{{forloop.counter}}</td>
-            <td>{{i.Category_Name.Category_Name}}</td>
-            <td>{{i.SubCategory_Name}}</td>
+            <td>{{i.Category_Id.Category_Name}}</td>
+            <td>{{i.SubCat_Name}}</td>
             <td><a href="{% url 'webclass:delete_SubCat' i.id %}">Delete</a></td>
             
             </tr>
