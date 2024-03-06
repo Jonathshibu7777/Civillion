@@ -26,22 +26,3 @@ class tbl_SubCategory(models.Model):
     SubCat_Name = models.CharField(max_length=50)
     Category_Id = models.ForeignKey(tbl_Category, on_delete=models.CASCADE)
     
-class tbl_Department(models.Model):
-    Department_Name = models.CharField(max_length=50)
-    
-class tbl_Semester(models.Model):
-    Semester_Name = models.CharField(max_length=50)
-    
-class tbl_Subject(models.Model):
-    Subject_Name = models.CharField(max_length=50)
-    
-class tbl_Course(models.Model):
-    Course_Name = models.CharField(max_length=50)
-    Course_Duration = models.CharField(max_length=50)
-    Course_Nusum = models.CharField(max_length=50)
-    Department_Name = models.ForeignKey(tbl_Department, on_delete=models.CASCADE)
-    
-class tbl_Syllabus(models.Model):
-    Course_Name = models.ForeignKey(tbl_Course, on_delete=models.CASCADE)
-    Semester_Name = models.ForeignKey(tbl_Semester, on_delete=models.CASCADE)
-    Department_Name = models.ForeignKey(tbl_Department, on_delete=models.CASCADE)

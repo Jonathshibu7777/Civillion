@@ -24,22 +24,4 @@ urlpatterns = [
     path('SubCat/', views.SubCat,name="SubCat"),
     path('delete_SubCat/<int:id>',views.delete_SubCat,name="delete_SubCat"),
     
-    path('Department/', views.Department,name="Department"),
-    path('delete_department/<int:id>',views.delete_department,name="delete_department"),
-    path('edit_department/<int:id>',views.edit_department,name="edit_department"),
-    
-    path('Semester/', views.Semester,name="Semester"),
-    path('delete_semester/<int:id>',views.delete_semester,name="delete_semester"),
-    path('edit_semester/<int:id>',views.edit_semester,name="edit_semester"),
-    
-    path('Subject/', views.Subject,name="Subject"),
-    path('delete_subject/<int:id>',views.delete_subject,name="delete_subject"),
-    path('edit_subject/<int:id>',views.edit_subject,name="edit_subject"),
-    
-    path('Course/', views.Course,name="Course"),
-    path('delete_course/<int:id>',views.delete_course,name="delete_course"),
-    
-    path('syllabus/', views.syllabus,name="syllabus"),
-    path('delete_syllabus/<int:id>',views.delete_syllabus,name="delete_syllabus"),
-    
 ]
