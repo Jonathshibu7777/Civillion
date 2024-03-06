@@ -41,7 +41,7 @@ def Login(request):
         Password=request.POST.get("password")
         admincount=tbl_Admin.objects.filter(Admin_Email=Email,Admin_Password=Password).count()
         if admincount>0:
-            admin=tbl_Admin.objects.get(Admin_Email=Email,Admin_Password=Password)
+            admin=tbl_Admin.objects.get(Admin_Email=Email,Admin_Password=Password) 
             request.session["adminid"]=admin.id
             return redirect("webclass:Home")
         else:
